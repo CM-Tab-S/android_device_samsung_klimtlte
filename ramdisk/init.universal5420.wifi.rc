@@ -8,8 +8,6 @@ on post-fs-data
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
-    chown dhcp dhcp /data/misc/dhcp
 
     # for WIFI TRP/TIS
     chown system root /data/.psm.info
@@ -59,31 +57,6 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-service dhcpcd_wlan0 /system/bin/dhcpcd -ABKL
-    class main
-    disabled
-    oneshot
-
-service dhcpcd_ibss /system/bin/dhcpcd -BKM
-    class late_start
-    disabled
-    oneshot
-
-service dhcpcd_p2p /system/bin/dhcpcd -aABKL
-    class main
-    disabled
-    oneshot
-
-service iprenew_wlan0 /system/bin/dhcpcd -n
-    class main
-    disabled
-    oneshot
-
-service iprenew_p2p /system/bin/dhcpcd -n
-    class main
-    disabled
-    oneshot
-
 # start for WiFi MFG (TestMode)
 service mfgloader /system/bin/mfgloader
     class main
@@ -112,12 +85,6 @@ service olsrd /system/bin/olsrd -f /etc/wifi/olsrd.conf
     class main
     disabled
     oneshot
-
-on property:init.svc.dhcpcd_ibss=running
-    start olsrd
-
-on property:init.svc.dhcpcd_ibss=stopped
-    stop olsrd
 
 service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
     class late_start

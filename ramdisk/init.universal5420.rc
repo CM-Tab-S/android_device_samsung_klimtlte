@@ -18,12 +18,9 @@ on init
 
 on post-fs
     # Support legacy paths
-    symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
     symlink /sdcard1 /storage/sdcard1
-    symlink /sdcard1 /mnt/extSdCard
     symlink /sdcard1 /external_sd
-    symlink /storage/usbdisk /mnt/usbdisk
 
 on early-init
     write /sys/block/mmcblk0/queue/read_ahead_kb 512
@@ -74,23 +71,10 @@ on post-fs-data
     chmod 0600 /dev/btlock
     chown bluetooth bluetooth /dev/btlock
 
-# Added for TZ Playready DRM Support
-    mkdir /efs/drm 0700 drm system
-    mkdir /efs/drm/playready 0775 drm system
-
     #Create directory for hostapd
     mkdir /data/hostapd 0770 system wifi
 
-# Bluetooth dhcpcd config
-service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
-    class main
-	disabled
-	oneshot
 
-service iprenew_bt-pan /system/bin/dhcpcd -n
-    class late_start
-	disabled
-	oneshot
 
 on boot
 
@@ -453,17 +437,6 @@ service bttestdaemon /system/bin/bttestd
     class main
     user bluetooth
     group bluetooth net_bt_admin
-    disabled
-    oneshot
-
-# for ethernet
-service dhcpcd_eth0 /system/bin/dhcpcd -aABDKL
-    class late_start
-    disabled
-    oneshot
-
-service iprenew_eth0 /system/bin/dhcpcd -n
-    class late_start
     disabled
     oneshot
 
