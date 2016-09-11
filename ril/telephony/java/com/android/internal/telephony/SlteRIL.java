@@ -28,6 +28,7 @@ import android.telephony.SmsManager;
 import com.android.internal.telephony.uicc.IccCardApplicationStatus;
 import com.android.internal.telephony.uicc.IccCardStatus;
 import com.android.internal.telephony.uicc.IccRefreshResponse;
+import com.android.internal.telephony.uicc.IccUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -403,7 +404,7 @@ public class SlteRIL extends RIL {
 
     @Override
     protected void
-    processUnsolicited(Parcel p) {
+    processUnsolicited(Parcel p, int type) {
         Object ret;
 
         int dataPosition = p.dataPosition();
@@ -443,15 +444,15 @@ public class SlteRIL extends RIL {
             case RIL_UNSOL_AM:
                 ret = responseString(p);
                 break;
-            case RIL_UNSOL_STK_SEND_SMS_RESULT:
+            /*case RIL_UNSOL_STK_SEND_SMS_RESULT:
                 ret = responseInts(p);
-                break;
+                break;*/
             default:
                 // Rewind the Parcel
                 p.setDataPosition(dataPosition);
 
                 // Forward responses that we are not overriding to the super class
-                super.processUnsolicited(p);
+                super.processUnsolicited(p, type);
                 return;
         }
 
