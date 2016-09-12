@@ -46,6 +46,10 @@ TARGET_SCREEN_WIDTH := 1600
 PRODUCT_PACKAGES += \
     libsamsung_symbols
 
+# Bluetooth
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+
 # boringssl-compat
 PRODUCT_PACKAGES += \
     libboringssl-compat
