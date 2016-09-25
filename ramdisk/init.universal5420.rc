@@ -404,7 +404,8 @@ on fs
     chown system radio /sys/class/audio/earjack/state
 
 # create camera directory
-    mkdir /data/camera 0700 media media
+# disclaimer: untested but probably right group for N
+    mkdir /data/camera 0770 media system
 
 # GPS
     chown root system /dev/ttySAC1

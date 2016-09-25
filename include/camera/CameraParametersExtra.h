@@ -32,7 +32,9 @@ const char CameraParameters::ISO_100[] = "100"; \
 const char CameraParameters::ISO_80[] = "80"; \
 const char CameraParameters::ISO_50[] = "50"; \
 \
-int CameraParameters::getInt64(const char *key) const { return -1; } \
+int CameraParameters::getInt64(const char *key) const { \
+	key; return -1; } \
+\
 extern "C" { \
     void acquire_dvfs_lock(void) { } \
     void release_dvfs_lock(void) { } \
