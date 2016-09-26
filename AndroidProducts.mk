@@ -1,4 +1,5 @@
-# Copyright (C) 2013 The CyanogenMod Project
+#
+# Copyright 2015 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,12 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-# Inherit from klimtlte device
-$(call inherit-product, device/samsung/klimtlte/device.mk)
-
-# Discard inherited values and use our own instead.
-PRODUCT_NAME := full_klimtlte
-PRODUCT_DEVICE := klimtlte
-PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := AOSP on SM-T705
+PRODUCT_MAKEFILES := \
+    $(LOCAL_DIR)/aosp_klimtlte.mk

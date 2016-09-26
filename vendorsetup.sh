@@ -1,1 +1,1 @@
-add_lunch_combo cm_klimtlte-userdebug
+add_lunch_combo aosp_klimtlte-userdebug
