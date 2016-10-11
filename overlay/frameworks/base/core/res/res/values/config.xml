@@ -285,6 +285,9 @@
     <!-- Whether UI for multi user should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
 
+    <!-- The device supports freeform window management -->
+    <bool name="config_freeformWindowManagement">true</bool>
+
     <!-- Indicate whether closing the lid causes the device to go to sleep and opening
       it causes the device to wake up.
       The default is false. -->
