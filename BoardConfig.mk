@@ -161,6 +161,9 @@ BOARD_USES_GSC_VIDEO := true
 BOARD_SEPOLICY_DIRS += \
     device/samsung/klimtlte/sepolicy
 
+# SurfaceFlinger
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+
 # Webkit
 ENABLE_WEBGL := true
 
