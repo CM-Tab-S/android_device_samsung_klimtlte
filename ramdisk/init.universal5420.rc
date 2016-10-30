@@ -405,8 +405,10 @@ on fs
 
 # create camera directory
 # disclaimer: untested but probably right group for N
-    mkdir /data/camera 0770 media system
-    mkdir /data/misc/media 0770 media system
+    mkdir /data/camera 0777 media media
+    chmod 0777 /data/camera
+    mkdir /data/misc/media 0777 media media
+    chmod 0777 /data/misc/media
 
 # GPS
     chown root system /dev/ttySAC1
