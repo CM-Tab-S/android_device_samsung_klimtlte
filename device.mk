@@ -85,6 +85,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/hal/audio/audio_policy.conf:system/etc/audio_policy.conf
 
+PRODUCT_PACKAGES += \
+    libshims_wvm
+
 # IR
 PRODUCT_PACKAGES += \
     consumerir.universal5420
