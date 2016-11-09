@@ -18,7 +18,6 @@ on init
 
 on post-fs
     # Support legacy paths
-    symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
     symlink /sdcard1 /storage/sdcard1
     symlink /sdcard1 /mnt/extSdCard
@@ -80,17 +79,6 @@ on post-fs-data
 
     #Create directory for hostapd
     mkdir /data/hostapd 0770 system wifi
-
-# Bluetooth dhcpcd config
-service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
-    class main
-	disabled
-	oneshot
-
-service iprenew_bt-pan /system/bin/dhcpcd -n
-    class late_start
-	disabled
-	oneshot
 
 on boot
 
@@ -461,17 +449,6 @@ service bttestdaemon /system/bin/bttestd
     class main
     user bluetooth
     group bluetooth net_bt_admin
-    disabled
-    oneshot
-
-# for ethernet
-service dhcpcd_eth0 /system/bin/dhcpcd -aABDKL
-    class late_start
-    disabled
-    oneshot
-
-service iprenew_eth0 /system/bin/dhcpcd -n
-    class late_start
     disabled
     oneshot
 
